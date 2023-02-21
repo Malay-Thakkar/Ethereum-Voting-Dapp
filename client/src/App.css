@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.main-container {
+    display: flex;
+    height: 100%;
+    width: auto;
+    background-image: linear-gradient(#84B4FF, #696969);
+}
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .main-container {
+        width: fit-content;
+        display: flex;
+        height: 100%;
+        background-image: linear-gradient(#84B4FF, #696969);
+    }
+}
+
+main {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.title {
+    font-size: 3rem;
+    display: grid;
+    place-items: center;
+}
+
+
+/* form content */
+
+.formcontent {
+    box-shadow: 0 4px 8px 0 rgba(1, 1, 1, 1);
+    background-color: #5c8fe1;
+    max-width: 30rem;
+    margin: auto;
+    font-family: arial;
+    border: #696969;
+    padding: 2rem;
+}
+
+.manual {
+    box-shadow: 0 4px 8px 0 rgba(1, 1, 1, 1);
+    background-color: #5c8fe1;
+    margin: 2rem;
+    margin: auto;
+    font-family: arial;
+    border: #696969;
+    padding: 2rem;
+}
+
+a {
+    color: rgb(5, 21, 147);
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    background: rgb(0, 7, 61);
+    color: white;
+    height: auto;
+    overflow-y: auto;
+}
+
+.top_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+
+.logo {
+    font-size: 18px;
+    line-height: 0;
+}
+
+.bars {
+    width: 30px;
+}
+
+.hide {
+    display: none;
+}
+
+.routes {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.link {
+    display: flex;
+    color: white;
+    gap: 10px;
+    padding: 5px 10px;
+    border-right: 4px solid transparent;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.link:hover {
+    border-right: 4px solid white;
+    background: rgb(45, 51, 89);
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.active {
+    border-right: 4px solid white;
+    background: rgb(45, 51, 89);
+}
+
+.link_text {
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+.menu {
+    display: flex;
+    color: white;
+    padding: 5px 10px;
+    border-right: 4px solid transparent;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    justify-content: space-between;
+}
+
+.menu_item {
+    display: flex;
+    gap: 10px;
+}
+
+.menu_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_container .link {
+    padding-left: 20px;
+    border-bottom: #fff 0.5px solid;
+}
