@@ -5,6 +5,7 @@ import {BiBookReader,BiLogOut } from "react-icons/bi";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
+import Footer from "../Footer";
 
 const routes = [
   {
@@ -75,7 +76,7 @@ const SideAdminbar = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "200px" : "45px",
+            width: isOpen ? "250px" : "45px",
 
             transition: {
               duration: 0.5,

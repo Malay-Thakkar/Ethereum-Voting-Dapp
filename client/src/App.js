@@ -65,55 +65,56 @@ function App() {
   }, [role]);
   return (
     <>
-      {Route === "/" || Route === "/register" ?
+      <div>
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-        </Router> :
+        </Router>
+
         <>
-        { contractInstance == null ?
-          <>
-            <h2 style={{ textAlign: "center" }}> Loading Application </h2>
-          </> :
-          <Router>
-            {isadmin ? <SideAdminbar>
-              <Routes>
-                {isadmin ? <Route path="/addcandidate" element={<Addcandidate contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                {isadmin ? <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
-                <Route path="/manual" element={<Manual />} />
-                <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
-                <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-                <Route path="*" element={<Error />} />
-              </Routes>
-            </SideAdminbar> : null}
+          {contractInstance == null ?
+            <>
+              <h2 style={{ textAlign: "center" }}> Loading Application </h2>
+            </> :
+            <Router>
+              {isadmin ? <SideAdminbar>
+                <Routes>
+                  {isadmin ? <Route path="/addcandidate" element={<Addcandidate contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  {isadmin ? <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
+                  <Route path="/manual" element={<Manual />} />
+                  <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
+                  <Route path="/" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="*" element={<Error />} />
+                  {/* <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />  */}
+                </Routes>
+                <Footer />
+              </SideAdminbar> : null}
 
 
-            {isuser ? <SideBar>
-              <Routes>
-                {isuser ? <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                {isuser ? <Route path="/analysis" element={<Analysis />} /> : null}
-                {isuser ? <Route path="/result" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                <Route path="/manual" element={<Manual />} />
-                <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
-                <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
-                <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} />
-                <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-                <Route path="*" element={<Error />} />
-              </Routes>
-            </SideBar> : null}
-            <Footer />
-
-          </Router>
-      }
-      </>
-    }
+              {isuser ? <SideBar>
+                <Routes>
+                  {isuser ? <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  {isuser ? <Route path="/analysis" element={<Analysis />} /> : null}
+                  {isuser ? <Route path="/result" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+                  <Route path="/manual" element={<Manual />} />
+                  <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
+                  <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
+                  <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} />
+                  <Route path="/" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="*" element={<Error />} />
+                </Routes>
+              </SideBar> : null}
+            </Router>
+          }
+        </>
+      </div>
     </>
   );
 }
