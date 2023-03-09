@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.body {
+    background-image: linear-gradient(#b7cdf4, #696969);
+}
+
 .footer {
     bottom: 0;
     padding: 10px;

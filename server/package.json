@@ -13,10 +13,13 @@
     "author": "Malay Thakkar",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.0.1",
         "dotenv": "^8.2.0",
+        "cors": "^2.8.5",
         "esm": "^3.2.25",
         "express": "^4.17.1",
         "joi": "17.4.0",
+        "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.12.1"
     },
     "devDependencies": {

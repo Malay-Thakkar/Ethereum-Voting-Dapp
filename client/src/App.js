@@ -1,9 +1,8 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import SideBar from "./components/Sidebar/SideBar";
-import SideAdminbar from './components/Sidebar/SideAdminbar'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { connectWeb3Metamask } from './web3_functions'
 
 import Profile from './pages/Profile';
 import Login from './pages/Login';
@@ -19,20 +18,30 @@ import Addcandidate from "./pages/Addcandidate";
 import VotingPhase from "./pages/VotingPhase";
 import CandidateInfo from "./pages/CandidateInfo";
 import VoterInfo from "./pages/VoterInfo";
-
-import { connectWeb3Metamask } from './web3_functions'
-
 function App() {
   const [isadmin, setisadmin] = useState(false);
-  const [isuser, setisuser] = useState(false);
-  const token = localStorage.getItem('token');
-
-
-  var decoded = jwt_decode(token);
-  let role = decoded.role;
-  console.log(role);
+  const [islogin, setislogin] = useState(false);
   const [contractInstance, setContract] = useState(null)
   const [accounts, setAccounts] = useState()
+
+  useEffect(() => {
+    var token = localStorage.getItem('token');
+    if (token !== null) {
+      var decoded = jwt_decode(token);
+      var role = decoded.role;
+      setislogin(true);
+      if ("admin" === role) {
+        setisadmin(true);
+      }
+    }
+    else {
+      setislogin(false);
+      setisadmin(false);
+    }
+    //Runs only on the first render
+  }, []);
+
+
 
   useEffect(() => {
     async function connect() {
@@ -53,69 +62,39 @@ function App() {
     setTimeout(connect, 1500);
   }, [])
 
-  useEffect(() => {
-    if ("admin" === role) {
-      setisadmin(true);
-    }
-    else if ("customer" === role) {
-      setisuser(true);
-    }
 
-    //Runs only on the first render
-  }, [role]);
   return (
-    <>
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </Router>
+    <Router>
+      {islogin ? null :
+        <Routes>
 
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+        </Routes>
+      }
+      {contractInstance == null ?
         <>
-          {contractInstance == null ?
-            <>
-              <h2 style={{ textAlign: "center" }}> Loading Application </h2>
-            </> :
-            <Router>
-              {isadmin ? <SideAdminbar>
-                <Routes>
-                  {isadmin ? <Route path="/addcandidate" element={<Addcandidate contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  {isadmin ? <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
-                  <Route path="/manual" element={<Manual />} />
-                  <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
-                  <Route path="/" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="*" element={<Error />} />
-                  {/* <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />  */}
-                </Routes>
-                <Footer />
-              </SideAdminbar> : null}
+          <h2 style={{ textAlign: "center" }}> Loading Application connect metamsk account...</h2>
+        </> :
+        <Routes>
+          {isadmin ? <Route path="/addcandidate" element={<Addcandidate contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+          {isadmin ? <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+          {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+          {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
+          {isadmin ? <Route path="/getwinner" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
 
+          <Route path="/manual" element={<Manual />} />
+          <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />
+          <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
+          <Route path="/candidateinfo" element={<CandidateInfo />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/analysis" element={<Analysis />} />
+        </Routes>
+      }
+      <Footer />
+    </Router>
 
-              {isuser ? <SideBar>
-                <Routes>
-                  {isuser ? <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  {isuser ? <Route path="/analysis" element={<Analysis />} /> : null}
-                  {isuser ? <Route path="/result" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-                  <Route path="/manual" element={<Manual />} />
-                  <Route path="/candidateinfo" element={<CandidateInfo contractInstance={contractInstance} account={accounts[0]} />} />
-                  <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
-                  <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} />
-                  <Route path="/" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="*" element={<Error />} />
-                </Routes>
-              </SideBar> : null}
-            </Router>
-          }
-        </>
-      </div>
-    </>
   );
 }
 

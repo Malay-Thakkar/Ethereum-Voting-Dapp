@@ -12,11 +12,11 @@ const routes = [
     name: "Manual",
     icon: <BiBookReader />,
   },
-  {
-    path: "/addvoter ",
-    name: "Voter Registration",
-    icon: <GiArchiveRegister />,
-  },
+  // {
+  //   path: "/addvoter ",
+  //   name: "Voter Registration",
+  //   icon: <GiArchiveRegister />,
+  // },
   {
     path: "/candidateinfo",
     name: "Candidate Info",
@@ -72,10 +72,10 @@ const SideBar = ({ children }) => {
 
   return (
     <>
-      <div className="main-container">
-        <motion.div
+      
+      <motion.div
           animate={{
-            width: isOpen ? "200px" : "45px",
+            width: isOpen ? "250px" : "45px",
 
             transition: {
               duration: 0.5,
@@ -95,7 +95,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  E-Voting Dapp
+                  Voter Dashboard
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -143,9 +143,6 @@ const SideBar = ({ children }) => {
             })}
           </section>
         </motion.div>
-
-        <main>{children}</main>
-      </div>
     </>
   );
 };

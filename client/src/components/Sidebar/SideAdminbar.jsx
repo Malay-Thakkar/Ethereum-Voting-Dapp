@@ -5,7 +5,7 @@ import {BiBookReader,BiLogOut } from "react-icons/bi";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
-import Footer from "../Footer";
+
 
 const routes = [
   {
@@ -36,6 +36,21 @@ const routes = [
   {
     path: "/phase",
     name: "Voting phase",
+    icon: <FaHandHoldingHeart />,
+  },
+  {
+    path: "/getwinner",
+    name: "Get Winner",
+    icon: <FaHandHoldingHeart />,
+  },
+  {
+    path: "/analysis",
+    name: "Analysis",
+    icon: <FaHandHoldingHeart />,
+  },
+  {
+    path: "/voting",
+    name: "voting",
     icon: <FaHandHoldingHeart />,
   },
   {
@@ -73,8 +88,8 @@ const SideAdminbar = ({ children }) => {
 
   return (
     <>
-      <div className="main-container">
-        <motion.div
+     
+     <motion.div
           animate={{
             width: isOpen ? "250px" : "45px",
 
@@ -96,7 +111,7 @@ const SideAdminbar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  E-Voting Dapp
+                  Adimin Dashboard
                 </motion.h1>
               )}
             </AnimatePresence>
@@ -144,9 +159,6 @@ const SideAdminbar = ({ children }) => {
             })}
           </section>
         </motion.div>
-
-        <main>{children}</main>
-      </div>
     </>
   );
 };

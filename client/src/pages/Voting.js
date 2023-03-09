@@ -1,9 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import {getAllCandidate, putVote, votingStarted} from '../web3_functions'
+import jwt_decode from "jwt-decode";
+import SideAdminbar from "../components/Sidebar/SideAdminbar";
+import Sidebar from "../components/Sidebar/SideBar";
 
 const Voting = ({ account, contractInstance }) => {
   const [totalCandidate, setTotalCandidate] = useState([]);
   const [votingStatus, setVotingStatus] = useState(false);
+  const [isadmin, setisadmin] = useState(false);
+  
+  useEffect(() => {
+    var token = localStorage.getItem('token');
+    if (token !== null) {
+      var decoded = jwt_decode(token);
+      var role = decoded.role;
+      if ("admin" === role) {
+        setisadmin(true);
+      }
+    }
+    else {
+      setisadmin(false);
+    }
+    //Runs only on the first render
+  }, []);
 
   useEffect(() => {
     async function connect() {
@@ -27,6 +46,9 @@ const Voting = ({ account, contractInstance }) => {
   return (
     <>
       <div>
+      <div className='main-container'>
+      {isadmin ? <SideAdminbar />:<Sidebar />}
+      <div className='col'>
         {votingStatus === false ?
           <>
             <h2>Voting not started yet !!</h2>
@@ -50,6 +72,8 @@ const Voting = ({ account, contractInstance }) => {
           })
         }
       </div>
+      </div>
+    </div>
     </>
   )
 }

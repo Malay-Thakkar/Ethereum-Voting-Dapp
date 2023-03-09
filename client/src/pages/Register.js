@@ -6,6 +6,7 @@ function Register() {
 
 
     const [name, setName] = useState('')
+    const [account, setaccount] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repeat_password, setrepeat_password] = useState('')
@@ -17,6 +18,7 @@ function Register() {
             await axios.post('http://localhost:5000/api/register', {
                 name,
                 email,
+                account,
                 password,
                 repeat_password,
             })
@@ -42,14 +44,14 @@ function Register() {
 
     return (
         <>
-            <div className="vh-100 d-flex justify-content-center align-items-center m-5 ">
-                <div className="col-md-5 p-5 shadow-sm border rounded border-primary m-5">
-                    <h1 className="text-center mb-4 text-primary">Register</h1>
+         <div className="vh-100 d-flex justify-content-center align-items-center m-2 ">
+                <div className="formcontent col-md-5 p-5 m-5">
+                    <h1 className="text-center mb-4">Register</h1>
 
                     <form onSubmit={registerUser}>
 
                         <div className="mb-3">
-                            <label htmlFor="exampleInputname1" className="form-label text-primary">Name</label>
+                            <label htmlFor="exampleInputname1" className="form-label ">Name</label>
                             <input
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -61,8 +63,21 @@ function Register() {
                             />
                         </div>
 
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputname1" className="form-label ">account No</label>
+                            <input
+                                value={account}
+                                onChange={(e) => setaccount(e.target.value)}
+                                type="text"
+                                placeholder="account no."
+                                name="account"
+                                required
+                                className="form-control border border-primary"
+                            />
+                        </div>
+
                         <div className='mb-3'>
-                            <label htmlFor="exampleInputEmail1" className="form-label text-primary">Email</label>
+                            <label htmlFor="exampleInputEmail1" className="form-label ">Email</label>
                             <input
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -75,7 +90,7 @@ function Register() {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="exampleInputsize1" className="form-label text-primary">Password</label>
+                            <label htmlFor="exampleInputsize1" className="form-label ">Password</label>
                             <input
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +103,7 @@ function Register() {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="exampleInputsize1" className="form-label text-primary">Conform Password</label>
+                            <label htmlFor="exampleInputsize1" className="form-label ">Conform Password</label>
                             <input
                                 value={repeat_password}
                                 onChange={(e) => setrepeat_password(e.target.value)}
@@ -101,7 +116,7 @@ function Register() {
                         </div>
 
                         <div className="d-grid">
-                            <button className="btn btn-primary" type="submit">Sign up</button>
+                            <button className="btn" type="submit">Sign up</button>
                         </div>
                     </form>
                 </div>

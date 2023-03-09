@@ -9,6 +9,8 @@ export const Login = (props) => {
     const [password, setPassword] = useState('');
     const [navigate, setNavigate] = useState(false);
     let refreshtoken = "";
+
+
     async function handleSubmit(event) {
         try {
             event.preventDefault()
@@ -21,19 +23,17 @@ export const Login = (props) => {
                     refreshtoken = response.data.refresh_token;
                     localStorage.setItem("token", refreshtoken);
                     setNavigate(true);
-
+        
                 })
+
+
         }
-
-
-
         catch (error) {
             console.log(error);
             alert("invalid user!!!");
 
         }
     }
-
     if (navigate) {
         alert('Login susscessfully');
         return <Navigate to="/me" />;

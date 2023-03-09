@@ -1,8 +1,12 @@
 import React from 'react'
-
+import SideAdminbar from "../components/Sidebar/SideAdminbar";
 const VoterInfo = () => {
   return (
-    <div>VoterInfo</div>
+    <div className='main-container'><SideAdminbar />
+      <div className='col'>
+        <div>VoterInfo</div>
+      </div>
+    </div>
   )
 }
 
