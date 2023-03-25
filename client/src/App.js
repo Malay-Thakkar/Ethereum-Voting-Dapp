@@ -20,7 +20,6 @@ import CandidateInfo from "./pages/CandidateInfo";
 import VoterInfo from "./pages/VoterInfo";
 function App() {
   const [isadmin, setisadmin] = useState(false);
-  const [islogin, setislogin] = useState(false);
   const [contractInstance, setContract] = useState(null)
   const [accounts, setAccounts] = useState()
 
@@ -29,13 +28,11 @@ function App() {
     if (token !== null) {
       var decoded = jwt_decode(token);
       var role = decoded.role;
-      setislogin(true);
       if ("admin" === role) {
         setisadmin(true);
       }
     }
     else {
-      setislogin(false);
       setisadmin(false);
     }
     //Runs only on the first render
@@ -65,14 +62,7 @@ function App() {
 
   return (
     <Router>
-      {islogin ? null :
-        <Routes>
-
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-
-        </Routes>
-      }
+    
       {contractInstance == null ?
         <>
           <h2 style={{ textAlign: "center" }}> Loading Application connect metamsk account...</h2>
@@ -83,7 +73,9 @@ function App() {
           {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/getwinner" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" onEnter={() => localStorage.removeItem('token')} />
           <Route path="/manual" element={<Manual />} />
           <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />
           <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
