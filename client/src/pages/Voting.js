@@ -49,6 +49,7 @@ const Voting = ({ account, contractInstance }) => {
       <div className='main-container'>
       {isadmin ? <SideAdminbar />:<Sidebar />}
       <div className='col'>
+      <h1 style={{textAlign:"center"}}>Voting area</h1>
         {votingStatus === false ?
           <>
             <h2>Voting not started yet !!</h2>
@@ -64,7 +65,7 @@ const Voting = ({ account, contractInstance }) => {
                       <p className="card-text">{candidate.age}<br />
                         {candidate.address}</p>
                     </div>
-                    <button onClick={(e) => vote(candidate)}>Vote</button>
+                  {isadmin ?null:  <button onClick={(e) => vote(candidate)}>Vote</button>}
                   </div>
                 </div>
               </div>

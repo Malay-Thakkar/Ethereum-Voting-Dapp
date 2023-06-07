@@ -20,12 +20,14 @@ import CandidateInfo from "./pages/CandidateInfo";
 import VoterInfo from "./pages/VoterInfo";
 function App() {
   const [isadmin, setisadmin] = useState(false);
+  const [isLogin, setisLogin] = useState(false);
   const [contractInstance, setContract] = useState(null)
   const [accounts, setAccounts] = useState()
 
   useEffect(() => {
     var token = localStorage.getItem('token');
     if (token !== null) {
+      setisLogin(true);
       var decoded = jwt_decode(token);
       var role = decoded.role;
       if ("admin" === role) {
@@ -34,6 +36,7 @@ function App() {
     }
     else {
       setisadmin(false);
+      setisLogin(false);
     }
     //Runs only on the first render
   }, []);
@@ -68,20 +71,25 @@ function App() {
           <h2 style={{ textAlign: "center" }}> Loading Application connect metamsk account...</h2>
         </> :
         <Routes>
+          
+          <Route path="*" element={<Error />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" onEnter={() => localStorage.removeItem('token')} />
+          
           {isadmin ? <Route path="/addcandidate" element={<Addcandidate contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/addvoter" element={<Addvoter contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/phase" element={<VotingPhase contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/voterinfo" element={<VoterInfo contractInstance={contractInstance} account={accounts[0]} />} /> : null}
           {isadmin ? <Route path="/getwinner" element={<Result contractInstance={contractInstance} account={accounts[0]} />} /> : null}
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" onEnter={() => localStorage.removeItem('token')} />
-          <Route path="/manual" element={<Manual />} />
-          <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />
-          <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />
-          <Route path="/candidateinfo" element={<CandidateInfo />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/analysis" element={<Analysis />} />
+          
+          {isLogin ? <Route path="/manual" element={<Manual />} />:null}
+          {isLogin ? <Route path="/voting" element={<Voting contractInstance={contractInstance} account={accounts[0]} />} />:null}
+          {isLogin ? <Route path="/me" element={<Profile contractInstance={contractInstance} account={accounts[0]} />} />:null}
+          {isLogin ? <Route path="/candidateinfo" element={<CandidateInfo />} />:null}
+          {isLogin ? <Route path="/analysis" element={<Analysis />} />:null}
+          {isLogin ? <Route path="/result" element={<Result />} />:null}
+    
         </Routes>
       }
       <Footer />

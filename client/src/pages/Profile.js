@@ -65,6 +65,8 @@ export const Profile = ({ account }) => {
                 console.error(error)
                 console.log("logout");
             })
+        localStorage.removeItem('token');
+        
     }
 
 
@@ -80,7 +82,7 @@ export const Profile = ({ account }) => {
                             <h1 className="text-center mb-4">Profile</h1>
                             <h5>Name: {name}</h5>
                             <h5>Email id: {email}</h5>
-                            <h5>your acc no: {account}</h5>
+                            <h5>your acc no: <h6>{account}</h6></h5>
                             <h5>User id: {userid}</h5>
                             <h5>Role: {role}</h5>
 
