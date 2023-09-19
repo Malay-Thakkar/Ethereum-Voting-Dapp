@@ -1,6 +1,7 @@
 # Ethereum-Voting-Dapp
 
-
+Research project: E-voting system using blockchain. 
+This research project focuses on enhancing the fundamental voting process in our society by implementing an E-Voting system using blockchain technology. The implementation of a decentralized application (DApp) ensures confidentiality, integrity, and availability. As a result, a tamper-proof and transparent voting mechanism is achieved. With the ability to prevent double voting, enable secure remote voting, and enhance public trust in elections, the DApp offers full administrative control to authorized administrators, allowing them to efficiently manage candidates, voters, and voting phases.
 
 • It is an Ethereum-based Decentralize application.
 
@@ -10,12 +11,12 @@
 
 • Utilized responsive design to ensure compatibility across all devices. 
 
-• Tested and develop in the local Ethereum network.
+• Tested and developed in the local Ethereum network.
 
 
-9. USER MENUAL
+USER MANUAL
  
-Step-1 Clone git reposetory:
+Step-1 Clone git repository:
 
 Command: git clone https://github.com/Malay-Thakkar/Ethereum-Voting-Dapp.git
 
@@ -39,7 +40,7 @@ truffle migrate --reset
 
 (Fig.9.2 Implementation)
 
-That generate Voting.json file in build folder that put in following path: \client\src
+That generates Voting.json file in the build folder that is put in the following path: \client\src
 
 
 Step-3 Frontend Start
@@ -80,7 +81,7 @@ In this first, we have to log in through Metamask.
 
 (Fig.7.1 Implementation)
 
-After login through Metamask. We are redirecting to the main login page of our website.
+After logging through Metamask. We are redirecting to the main login page of our website.
 
 Website login page
 
@@ -89,8 +90,8 @@ Website login page
 (Fig.7.2 Implementation)
 
 
-In this login page we are login through email address and password.
-If we login through admin credential then we go on admin section and if we login through user credential then we redirect on user section.
+In this login page, we are login through email address and password.
+If we log in through the admin credential then we go on the admin section and if we login through the user credential then we redirect to the user section.
 Phase 1
 
 Admin manual
@@ -99,7 +100,7 @@ Admin manual
 
 (Fig.7.3 Implementation)
 
-If we login through admin credential then we are redirecting on this page and here we can see manual of admin. In left side you can see multiple options manual candidate registration, voter registration, candidate info, voter info, voting phase, get winner, analysis, voting, profile, logout.
+If we login through admin credentials then we are redirected on this page and here we can see the manual of admin. In left side you can see multiple options manual candidate registration, voter registration, candidate info, voter info, voting phase, get winner, analysis, voting, profile, logout.
 
 candidate registration page
 
