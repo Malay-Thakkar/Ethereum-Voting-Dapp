@@ -1,6 +1,7 @@
 # Ethereum-Voting-Dapp
 
 Research project: E-voting system using blockchain. 
+
 This research project focuses on enhancing the fundamental voting process in our society by implementing an E-Voting system using blockchain technology. The implementation of a decentralized application (DApp) ensures confidentiality, integrity, and availability. As a result, a tamper-proof and transparent voting mechanism is achieved. With the ability to prevent double voting, enable secure remote voting, and enhance public trust in elections, the DApp offers full administrative control to authorized administrators, allowing them to efficiently manage candidates, voters, and voting phases.
 
 • It is an Ethereum-based Decentralize application.
